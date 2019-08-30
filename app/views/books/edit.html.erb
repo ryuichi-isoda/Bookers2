@@ -1,0 +1,45 @@
+<div class="container">
+  <div style="color: green;">
+    <% if flash[:notice] %>
+      <%= flash[:notice] %>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class='col-md-6 col-md-offset-3'>
+      <h2>Editing Book</h2>
+
+      <%= form_for(@book) do |f| %>
+      <!-- エラーメッセージの表示 -->
+        <% if @book.errors.any? %>
+            <p style="color: red; ">error</p>
+            <p style="color: red;"><%= @book.errors.count %>件のエラーが発生しました!!</p>
+            <ul>
+              <% @book.errors.full_messages.each do |message| %>
+              <li style="color: red;"><%= message %></li>
+              <% end %>
+            </ul>
+        <% end %>
+        <!-- ここまで -->
+
+      <div class="field row">
+        <label>Title</label>
+        <div class="book_title">
+          <%= f.text_field :title, class:"col-xs-12 book_title" %>
+        </div>
+      </div>
+
+      <div class="field row">
+        <label>Opinion</label>
+        <div class="book_opinion">
+          <%= f.text_area :body, class:"col-xs-12 book_opinion" %>
+        </div>
+      </div>
+
+      <div class="actions">
+        <%= f.submit 'Update Book', class:"btn btn-primary col-xs-12" %>
+      </div>
+      <% end %>
+      <p><%= link_to 'Show', book_path(@book.id) %>|<%= link_to 'Back', books_path %></p>
+    </div>
+  </div>
+</div>
