@@ -41,7 +41,9 @@ class BooksController < ApplicationController
 
 
   def edit
+    #  ユーザーはログインしているユーザー
     @user = current_user
+    # bookを一件取得
     @book = Book.find(params[:id])
   end
 

@@ -23,15 +23,13 @@
             </tr>
           </tbody>
         </table>
-        <% if @user.id == current_user.id %>
         <div class="row">
-          <%= link_to '', edit_user_path(@user) ,class:"col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+          <% if @user.id == current_user.id %>
+            <%= link_to '', edit_user_path(@user) ,class:"col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+          <% else %>
+            <%= link_to '', user_path(current_user.id) ,class:"col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+          <% end %>
         </div>
-        <% else %>
-        <div class="row">
-          <%= link_to '', user_path(current_user.id) ,class:"col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
-        </div>
-        <% end %>
         <!------- エラーメッセージの表示 ------>
         <% if @book.errors.any? %>
         <div id="error_explanation" class="alert alert-danger">
@@ -58,7 +56,7 @@
             <%= f.text_area :body, class:"col-xs-12 book_opinion" %>
           </div>
         </div>
-        <div class="actions row">
+        <div class="actions row", style="margin-top: 20px;">
           <%= f.submit 'Create Book', class:"btn btn-primary col-xs-12" %>
         </div>
 
