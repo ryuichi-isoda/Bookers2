@@ -3,8 +3,7 @@
 
   <%= form_for(@user) do |f| %>
     <% if @user.errors.any? %>
-        <p style="color: red; ">error</p>
-          <p><%= @user.errors.count %>件のエラーが発生しました!!</p>
+        <p style="color: red;"><%= @user.errors.count %>件のerrorが発生しました。</p>
         <ul>
           <% @user.errors.full_messages.each do |message| %>
           <li style="color: red;"><%= message %></li>

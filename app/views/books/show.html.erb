@@ -35,7 +35,7 @@
       <!------- エラーメッセージの表示 ------>
       <% if @book.errors.any? %>
       <div id="error_explanation" class="alert alert-danger">
-        <p style="color: red; ">error</p>
+        <p style="color: red;"><%= @book.errors.count %>件のerrorが発生しました。</p>
         <ul>
           <% @book.errors.full_messages.each do |message| %>
           <li style="color: red;"><%= message %></li>
