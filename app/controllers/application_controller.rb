@@ -12,7 +12,9 @@ class ApplicationController < ActionController::Base
 
   protected
   def configure_permitted_parameters
+    # ログインするときにnameとpasswordを要求
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:email])
+    # ユーザー情報を更新するときにnameとintroductionを要求
     devise_parameter_sanitizer.permit(:account_update, keys: [:name,:introduction])
   end
 end
