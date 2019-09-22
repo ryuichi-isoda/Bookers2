@@ -1,11 +1,16 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, :only => [:show, :index, :edit]
   def index
+    # @userはログインしたアカウント
     @user = current_user
+    # ユーザーを全件取得
     @users = User.all
+    # 本の空のモデルの生成
     @book = Book.new
   end
+
   def show
+    # 本の空のモデルの生成
     @book = Book.new
     # @userはbookを投稿したユーザー
     @user = User.find(params[:id])
@@ -16,7 +21,8 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     if @user.id != current_user.id
-        redirect_to user_path(current_user)
+      # redirect_to user_path(current_user) と同じ意味
+      redirect_to current_user
     end
   end
 
@@ -24,8 +30,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = "You have updated user successfully."
-      redirect_to user_path(current_user)
+      # redirect_to user_path(current_user)と同じ意味
+      redirect_to current_user
     else
+      # render action: :edit と同じ意味
       render :edit
     end
   end
