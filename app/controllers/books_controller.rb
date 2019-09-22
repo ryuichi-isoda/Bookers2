@@ -1,5 +1,7 @@
 class BooksController < ApplicationController
+  # ログイン済ユーザーのみにアクセスを許可する
   before_action :authenticate_user!
+  
   before_action :correct_user, only: [:edit]
   def index
     # @userはログインしたアカウント

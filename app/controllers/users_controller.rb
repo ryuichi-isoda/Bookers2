@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
+  # ログイン済ユーザーのみにアクセスを許可する
   before_action :authenticate_user!, :only => [:show, :index, :edit]
+  
   def index
     # @userはログインしたアカウント
     @user = current_user
