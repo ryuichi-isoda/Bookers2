@@ -62,7 +62,7 @@ class BooksController < ApplicationController
     book = Book.find(params[:id])
     if book.destroy
       flash[:notice] = "Book was successfully destroyed."
-      redirect_to books_path
+      redirect_to books_url
     else
       # 別のコントローラ内のアクションを呼ぶ
      render template: "users/show"
@@ -77,7 +77,7 @@ class BooksController < ApplicationController
   def correct_user
     @book = Book.find(params[:id])
     unless @book.user_id == current_user.id then
-      redirect_to books_path
+      redirect_to books_url
     end
   end
 end

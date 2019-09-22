@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     if @user.id != current_user.id
-      # redirect_to user_path(current_user) と同じ意味
+      # redirect_to user_url(current_user) と同じ意味
       redirect_to current_user
     end
   end
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = "You have updated user successfully."
-      # redirect_to user_path(current_user)と同じ意味
+      # redirect_to user_url(current_user)と同じ意味
       redirect_to current_user
     else
       # render action: :edit と同じ意味
