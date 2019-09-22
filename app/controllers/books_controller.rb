@@ -19,9 +19,6 @@ class BooksController < ApplicationController
     @user = @book.user
   end
 
-  def new
-  end
-
   def create
     # 本の空のモデルの生成
     @book = Book.new(book_params)
@@ -31,10 +28,12 @@ class BooksController < ApplicationController
     @book.user_id = current_user.id
     if @book.save
       flash[:notice] = "You have creatad book successfully."
-      redirect_to book_path(@book.id)
+      # redirect_to books_url(@book.id)と同じ意味
+      redirect_to @book
     else
       # 本を全件取得
       @books = Book.all
+      # 違うコントローラ内のアクションを呼ぶ
       render template: "users/show"
     end
   end
@@ -51,9 +50,11 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     if @book.update(book_params)
       flash[:notice] = "You have updated book successfully."
-      redirect_to book_path(@book.id)
+      # redirect_to books_url(@book.id)と同じ意味
+      redirect_to @book
     else
-      render action: :edit
+      # render action: :editと同じ意味
+      render :edit
     end
   end
 
@@ -61,8 +62,9 @@ class BooksController < ApplicationController
     book = Book.find(params[:id])
     if book.destroy
       flash[:notice] = "Book was successfully destroyed."
-     redirect_to books_path
+      redirect_to books_path
     else
+      # 別のコントローラ内のアクションを呼ぶ
      render template: "users/show"
     end
   end
