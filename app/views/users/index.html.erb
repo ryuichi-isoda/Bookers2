@@ -75,7 +75,7 @@
           <tbody>
             <tr>
               <td>
-                <%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", size:"40x40" %>
+                <%= link_to (attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", size:"40x40"), user_path(user.id) %>
               </td>
               <td>
                 <p><%= user.name%></p>
